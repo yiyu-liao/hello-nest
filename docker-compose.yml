@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: mysql
+    image: mysql
+    restart: always
+    environment: 
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports: 
+      - ${DB_PORT}:3306
+    volumes:
+      - ./docker/mysql/db-store:/var/lib/mysql
+      - ./logs:/var/log/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+        - core_service_network
+  api:
+    container_name: api
+    build: 
+      context: .
+      target: development
+    volumes: 
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports: 
+      - ${SERVER_PORT}:3000
+    command: npm run start:dev
+    env_file: 
+      .env
+    networks:
+      - core_service_network
+    depends_on: 
+      - db
+networks:
+  core_service_network:
+    driver: bridge
+    name: core_service_network
+volumes:
+  mysql_data:

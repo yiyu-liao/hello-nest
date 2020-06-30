@@ -10,14 +10,14 @@ let config = {
   api_prefix: 'api',
 
   port: 3000,
-  hostname: 'localhost',
+  hostname: '0.0.0.0',
 
   orm: {
     type: 'mysql',
-    host: 'localhost',
+    host: 'db',
     port: 3306,
     username: 'root',
-    password: '',
+    password: 'Rootpwd123.',
     database: 'hello_nest',
     entities: [resolve('./**/*.entity.{js, ts}')],
     migrations: ['migration/*.ts'],
@@ -28,7 +28,6 @@ let config = {
     synchronize: true,
     logging: false,
   },
-
 
   jwt: {
     secert: 'secertKey',

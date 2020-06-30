@@ -1,6 +1,6 @@
 ## Description
 
-typeorm, msql, nestjs 
+base typeorm, msql and nestjs .
 
 ### Base features
 
@@ -16,12 +16,12 @@ As this project use typeorm, you can set your entry in `src/core/entities` folde
 
 to do:
 
-- [ ] add docker-compose.yml, automate deploy.
-
-
+- [x] containerizing project with docker-compose
 
 continue to udpate, happy coding...
 
 ## License
 
   [MIT licensed](LICENSE).
+
+
